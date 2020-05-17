@@ -1,0 +1,103 @@
+<div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Add new Issue</h4>
+    </div>
+    <div class="card-body">
+      <form #f = "ngForm">   
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">category</label>
+          <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="selectedEnjeu.categorie" name="categorie">
+            <option>Internal Issues</option>
+            <option>External Issues</option>
+          </select>
+        </div>  
+        
+        <ng-template [ngIf]="this.selectedEnjeu.categorie==='Internal Issues'" [ngIfElse]="loading">
+        <div class="form-group"  >
+          <label for="exampleFormControlSelect1" >type</label>
+          <select class="form-control" id="exampleFormControlSelect2" [(ngModel)]="selectedEnjeu.type"  name="type">
+            <option>strength</option>
+            <option>weakness</option>
+          </select>
+          <label for="exampleFormControlSelect1">factors</label>
+          <select class="form-control" id="exampleFormControlSelect3" [(ngModel)] = "selectedEnjeu.critere" name="critere">
+            <option>Organizational values</option>
+            <option>Organizational performance</option>
+            <option>The organization's internal human resources</option>
+            <option>Installations and equipment</option>
+            <option>Customers</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </ng-template>
+
+      <ng-template #loading>
+        <div class="form-group"  >
+          <label for="exampleFormControlSelect1" >type</label>
+          <select class="form-control" id="exampleFormControlSelect2" [(ngModel)]="selectedEnjeu.type"  name="type">
+            <option>opportunity</option>
+            <option>threat</option>
+          </select>
+          <label for="exampleFormControlSelect1">factors</label>
+          <select class="form-control" id="exampleFormControlSelect3" [(ngModel)] = "selectedEnjeu.critere" name="critere">
+            <option>Politics</option>
+            <option> Economy</option>
+            <option>Society</option>
+            <option>Technology</option>
+            <option>Ecology</option>
+            <option>Legislation</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </ng-template>
+      
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Description</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="selectedEnjeu.description" name="description"></textarea>
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-primary btn-block" (click)="createOrUpdateEnjeu(f)">Add/update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                  Category
+                </th>
+                <th>
+                  Description
+                </th>
+                <th>
+                  Type
+                </th>
+                <th>
+                  Factors
+                </th>
+                <th>
+                  Operation
+                </th>            
+              </thead>
+              <tbody *ngFor="let enjeu of enjeus">  
+                <td>{{ enjeu.categorie}}</td>            
+                <td>{{ enjeu.description }}</td>
+                <td>{{ enjeu.type }}</td>
+                <td>{{ enjeu.critere }}</td>
+                <td>
+                  <button (click)="deleteEnjeu(enjeu.id)">Delete</button>
+                  <button (click)="selectEnjeu(enjeu)">Update</button>
+                </td>             
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

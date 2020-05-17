@@ -1,0 +1,55 @@
+<div class="row">
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                  Type
+                </th>
+                <th>
+                  Count
+                </th>                           
+              </thead>
+              <tbody>  
+                <tr>
+                    <td>Strength</td>
+                    <td>{{this.counts['strength']}}</td>
+                </tr>
+                <tr>
+                    <td>Weakness</td>
+                    <td>{{this.counts['weakness']}}</td>
+                </tr>
+                <tr>
+                    <td>Opportunity</td>
+                    <td>{{this.counts['opportunity']}}</td>
+                    
+                </tr>
+                <tr>
+                    <td>Threat</td>
+                    <td>{{this.counts['threat']}}</td>
+                </tr>               
+                            
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      </div>
+
+
+
+      <div class="col-md-6">
+        <div class="chart-wrapper">
+            <canvas baseChart 
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend"
+            [chartType]="barChartType">
+          </canvas>
+        </div>
+      </div>
+    </div>
